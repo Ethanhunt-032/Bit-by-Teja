@@ -1,29 +1,28 @@
-import { useState } from 'react'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './App.css'
-import HomePage from "./pages/HomePage.jsx";
-import AboutPage from "./pages/AboutPage.jsx";
-import ArticlesList from "./pages/ArticlesList.jsx";
-import ArticlePage from "./pages/ArticlePage.js";
-import Layout from "./Layout.jsx";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ArticlesList from "./pages/ArticlesListPage";
+import ArticlePage from "./pages/ArticlePage";
+import Layout from "./Layout";
 
-function App() {
+export default function App() {
 
-  const routes =[{
-      path : '/',
-      element : <Layout/>,
-      children: [{ path: '/', element: <HomePage/> },
-      { path: '/about', element: <AboutPage/> },{path: '/articles', element: <ArticlesList/>},
-      { path: '/articles/individual', element: <ArticlePage/>}  ]
-  }]
+    const routes = [{
+        path: '/',
+        element: <Layout />,
+        children: [{ path: '/', element: <HomePage /> },
+        { path: '/about', element: <AboutPage /> },
+        { path: '/articles', element: <ArticlesList /> },
+        { path: '/articles/:name', element: <ArticlePage />  // /articles/UrlParameter
+        }]
+    }]
 
-  const router = createBrowserRouter(routes);
 
-  return (
-      <>
-          <RouterProvider router={router}/>
-      </>
-  )
+    const Router = createBrowserRouter(routes);
+
+    return (
+        <RouterProvider router={Router} />
+    )
 }
-
-export default App
